@@ -15,9 +15,7 @@ public class WordCount {
 		String resultFolder = args[1];
 //		String dataFile = "/home/minhnhat/VCCorp/test.txt";
 //		String resultFolder = "/home/minhnhat/VCCorp/result";
-		SparkConf conf = new SparkConf().setAppName("My App").setMaster("local");
-		conf.set("spark.executor.memory", "10g");
-		conf.set("spark.cores.max", (Runtime.getRuntime().availableProcessors() - 1) + "");
+		SparkConf conf = new SparkConf().setAppName("My App");
 		JavaSparkContext sc = new JavaSparkContext(conf);
 		JavaRDD<String> textFile = sc.textFile(dataFile);
 		JavaPairRDD<String, Integer> counts = textFile.flatMap(s -> Arrays.asList(s.split(" ")).iterator())
